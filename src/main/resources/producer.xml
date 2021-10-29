@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd ">
+
+    <context:annotation-config />
+
+    <!--Activemq的连接工厂-->
+    <bean id="targetConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="tcp://49.7.129.129:61616" />
+    </bean>
+    <!--spring jms为我们提供的连接池 获取一个连接工厂-->
+    <bean id="connectionFactory" class="org.springframework.jms.connection.SingleConnectionFactory">
+        <property name="targetConnectionFactory" ref="targetConnectionFactory" />
+    </bean>
+
+    <!-- 消息目的地  点对点的模式-->
+    <bean id="queueDestination" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg value="SpringActiveMQMsg"/>
+    </bean>
+    <!-- jms模板  用于进行消息发送-->
+    <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory" ref="connectionFactory"/>
+    </bean>
+
+    <!--注入我们的生产者-->
+    <bean class="com.keafmd.service.impl.ProduceServiceImpl"/>
+
+    <!-- 消息目的地  (主题模式)-->
+<!--   <bean id="queueDestination" class="org.apache.activemq.command.ActiveMQTopic">-->
+<!--        &lt;!&ndash;配置队列模型的消息名称&ndash;&gt;-->
+<!--        <constructor-arg value="SpringActiveMQMsgTopic"/>-->
+<!--    </bean>-->
+
+
+
+</beans>
+
