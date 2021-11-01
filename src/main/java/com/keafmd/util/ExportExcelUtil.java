@@ -50,15 +50,15 @@ public class ExportExcelUtil<T> {
      *            表格的标题名称（没有标题，则传null）
      * @param headers
      *            表头列表
-     * @param dataList
+     * @param dataLists
      *            要导出的数据源
-     * @param HttpServletResponse
+     * @param response
      *            Http响应
      * @param pattern
      *            时间类型数据的格式,默认UTC格式
      * @param isExportNullField
      *            空字段是否导出（true：导出，false:不导出）
-     * @see 导出Excel格式：表头内容居中，字体略大于正文，颜色深灰色。正文文本类型对齐方式居左，数字类型对齐方式居右。仅有数据* 的单元格，有边框环绕，实体类的属性顺序即为表头顺序
+     * @see ：表头内容居中，字体略大于正文，颜色深灰色。正文文本类型对齐方式居左，数字类型对齐方式居右。仅有数据* 的单元格，有边框环绕，实体类的属性顺序即为表头顺序
      */
     public static <T> void exportExcel(String fileName, List<String> sheetNames, String titleName, List<String> headers,
                                        List<List<T>> dataLists, HttpServletResponse response, String pattern, boolean isExportNullField) {
