@@ -1,5 +1,7 @@
 package com.keafmd.controller;
 
+import com.keafmd.dao.ClassDao;
+import com.keafmd.entity.ClassInfo;
 import com.keafmd.entity.StudentInfo;
 import com.keafmd.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +17,15 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
+    @Autowired
+    private ClassDao classDao;
+
     @RequestMapping("/list")
     public List<StudentInfo> getName(){
         return studentService.queryStuList();
+    }
+    @RequestMapping("/clist")
+    public List<ClassInfo> gectName(){
+        return classDao.findAll();
     }
 }
