@@ -22,9 +22,9 @@
     <!-- 配置C3P0的连接池对象 -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
-        <property name="jdbcUrl" value="jdbc:mysql://49.7.129.129:3306/dong"/>
-        <property name="user" value="dong"/>
-        <property name="password" value="dong"/>
+        <property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/mbank_oradb"/>
+        <property name="user" value="root"/>
+        <property name="password" value="dong1234"/>
     </bean>
     <!-- 配置SqlSession的工厂 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

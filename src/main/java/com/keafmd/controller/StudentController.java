@@ -17,20 +17,8 @@ public class StudentController {
     private StudentService studentService;
 
     @RequestMapping("/list")
-    public List<StudentInfo> getName(){
-        return studentService.queryStuList();
+    public String getName(){
+        return "spring";
     }
 
-
-    @RequestMapping("/time")
-    public Long time() throws InterruptedException {
-        studentService.updateWithTimePessimistic();
-        return System.currentTimeMillis();
-    }
-
-    @RequestMapping("/notime")
-    public Long notime() throws InterruptedException {
-        studentService.updatePessimistic();
-        return System.currentTimeMillis();
-    }
 }
