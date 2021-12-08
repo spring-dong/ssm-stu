@@ -18,7 +18,8 @@ public class StudentController {
 
     @RequestMapping("/list")
     public String getName(){
-        return "spring";
+        studentService.queryStuList();
+        return "hello world";
     }
 
 }
