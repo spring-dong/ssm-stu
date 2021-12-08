@@ -43,9 +43,9 @@
         <property name="dataSource" ref="dataSource"></property>
     </bean>
     <!-- aop start  -->
-    <bean id="before" class="com.keafmd.advice.Log"></bean>
-    <bean id="after"  class="com.keafmd.advice.AfterLog"></bean>
-    <bean id="diy" class="com.keafmd.advice.DiyPointcut"></bean>
+<!--    <bean id="before" class="com.keafmd.advice.Log"></bean>-->
+<!--    <bean id="after"  class="com.keafmd.advice.AfterLog"></bean>-->
+<!--    <bean id="diy" class="com.keafmd.advice.DiyPointcut"></bean>-->
     <!-- aop end  -->
     <!-- 配置事务的通知 -->
     <tx:advice id="txAdvice" transaction-manager="transactionManager">

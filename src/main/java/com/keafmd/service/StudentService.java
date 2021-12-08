@@ -11,16 +11,6 @@ public interface StudentService {
 
     public List<StudentInfo> queryStuList();
 
-    public StudentInfo findByIdForUpdate(Integer stuId);
-
-    public void update(StudentInfo studentInfo);
-
-    public StudentInfo getUserInfoByUserNamePessimistic();
-
-    public void updateWithTimePessimistic() throws InterruptedException;
-
-    public void updatePessimistic() throws InterruptedException;
-
 
 
 }

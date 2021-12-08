@@ -11,16 +11,6 @@ import java.util.List;
 
 public interface StudentDao {
 
-    @Select("select * from student_info")
-    public List<StudentInfo> stuList();
-
-    @Select("select * from student_info  where stu_id=#{stuId} for update")
-    public StudentInfo findByIdForUpdate(Integer stuId);
-
-
-    @Update("update student_info set stu_name=#{stu_name} where stu_id=#{stu_id} ")
-    public void update(StudentInfo studentInfo);
-
 
 
 }

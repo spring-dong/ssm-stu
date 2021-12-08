@@ -1,65 +1,45 @@
 package com.keafmd.entity;
 
-import lombok.*;
-
-import java.util.Date;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 /**
- * (StudentInfo)实体类
- *
- * @author makejava
- * @since 2021-10-28 14:47:22
- */
-@Data
-@EqualsAndHashCode
-@AllArgsConstructor
-@NoArgsConstructor
+ * @author yanlin
+ * @version v1.3
+ * @date 2018-10-18 下午3:16
+ * @since v8.0
+ **/
 public class StudentInfo implements Serializable {
-    private static final long serialVersionUID = 903888550955912447L;
-    /**
-     * 学号
-     */
-    private Integer stu_id;
-    /**
-     * 姓名
-     */
-    @NonNull
-    private String stu_name;
-    /**
-     * 性别
-     */
-    @NonNull
-    private String stu_sex;
-    /**
-     * 出生日期
-     */
-    @NonNull
-    private Date born_data;
-    /**
-     * 班级号
-     */
-    @NonNull
-    private Integer class_no;
-    /**
-     * 联系电话
-     */
-    @NonNull
-    private String tele_number;
-    /**
-     * 入校日期
-     */
-    @NonNull
-    private Date ru_data;
-    /**
-     * 家庭住址
-     */
-    @NonNull
-    private String stu_address;
-    /**
-     * 备注
-     */
-    @NonNull
-    private String stu_comment;
-}
+    private static final long serialVersionUID = 7003907324788760110L;
+    @NotBlank(message = "姓名不能为空")
+    private String name;
+    @Min(value = 2, message = "不能小于2")
+    private String age;
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public StudentInfo() {
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "name='" + name + '\'' +
+                '}';
+    }
+}

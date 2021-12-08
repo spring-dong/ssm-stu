@@ -12,8 +12,7 @@ import java.util.List;
 
 @Service
 public class StudentServiceImpl implements StudentService {
-    @Autowired
-    private StudentDao studentDao;
+    
 
 
     @Override
@@ -22,44 +21,8 @@ public class StudentServiceImpl implements StudentService {
         return studentInfoList ;
     }
 
-    @Override
-    public StudentInfo findByIdForUpdate(Integer stuId) {
-        return null;
-    }
-
-    @Override
-    public void update(StudentInfo studentInfo) {
-        studentDao.update(studentInfo);
-    }
-
-    @Transactional
-    public StudentInfo getUserInfoByUserNamePessimistic() {
-        return studentDao.findByIdForUpdate(33);
-    }
-
-    @Transactional
-    public void updateWithTimePessimistic() throws InterruptedException {
-
-        StudentInfo student = studentDao.findByIdForUpdate(33);
-
-        Thread.sleep(50000);
-        student.setStu_name("aptexdjjd");
-
-        studentDao.update(student);
 
 
-
-    }
-
-    @Transactional
-    public void updatePessimistic() throws InterruptedException {
-
-        StudentInfo student = studentDao.findByIdForUpdate(33);
-        student.setStu_name("jjjjjjjjj");
-        studentDao.update(student);
-
-
-    }
 
 
 }
