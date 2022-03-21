@@ -22,7 +22,7 @@
     <!-- 配置C3P0的连接池对象 -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
-        <property name="jdbcUrl" value="jdbc:mysql:///mbank_oradb"/>
+        <property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/mbank_oradb"/>
         <property name="user" value="root"/>
         <property name="password" value="dong1234"/>
     </bean>
@@ -42,11 +42,21 @@
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"></property>
     </bean>
+    <!-- aop start  -->
+<!--    <bean id="before" class="com.keafmd.advice.Log"></bean>-->
+<!--    <bean id="after"  class="com.keafmd.advice.AfterLog"></bean>-->
+<!--    <bean id="diy" class="com.keafmd.advice.DiyPointcut"></bean>-->
+    <!-- aop end  -->
     <!-- 配置事务的通知 -->
     <tx:advice id="txAdvice" transaction-manager="transactionManager">
         <tx:attributes>
-            <tx:method name="find*" propagation="SUPPORTS" read-only="true"/>
-            <tx:method name="*" isolation="DEFAULT"/>
+            <tx:method name="save*" propagation="REQUIRED" />
+            <tx:method name="delete*" propagation="REQUIRED" />
+            <tx:method name="update*" propagation="REQUIRED" />
+            <tx:method name="get*" read-only="true"/>
+            <tx:method name="load*" read-only="true"/>
+            <tx:method name="find*" read-only="true"/>
+            <tx:method name="*" read-only="true"/>
         </tx:attributes>
     </tx:advice>
     <!-- 配置AOP增强 -->
@@ -56,7 +66,21 @@
         <aop:pointcut expression="execution(* com.keafmd.service.impl.*.*(..))" id="pt1"/>
         <!-- 建立通知和切入点表达式的关系 -->
         <aop:advisor advice-ref="txAdvice" pointcut-ref="pt1"/>
+
+        <!--执行环绕; advice-ref执行方法 . pointcut-ref切入点-->
+
+<!--        <aop:aspect ref="diy">-->
+<!--            <aop:before pointcut-ref="pt1" method="before"/>-->
+<!--            <aop:after pointcut-ref="pt1" method="after"/>-->
+<!--        </aop:aspect>-->
     </aop:config>
+
+    <tx:annotation-driven proxy-target-class="true" transaction-manager="transactionManager" />
+
+    <!--第三种方式:注解实现-->
+    <bean id="annotationPointcut" class="com.keafmd.advice.AnnotationPointcut"/>
+    <aop:aspectj-autoproxy/>
+
 
 
 </beans>
